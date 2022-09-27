@@ -81,7 +81,7 @@ class MovieRepository{
 
     try{
       Response response=await _dio.get(getPersonsUrl,queryParameters: params);
-      
+      print(response);
       return PersonResponse.fromJson(response.data);
     }catch (error,stacktracer){
        print("exeption occured : $error stacktracer : $stacktracer");

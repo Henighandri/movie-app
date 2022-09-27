@@ -1,6 +1,9 @@
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
+
+import 'package:movie_app/widgets/genres.dart';
 import 'package:movie_app/widgets/now_playing.dart';
+import 'package:movie_app/widgets/persons.dart';
 import '../style/theme.dart' as Style;
 
 class HomeScreen extends StatefulWidget {
@@ -24,8 +27,10 @@ class _HomeScreenState extends State<HomeScreen> {
             IconButton(onPressed: null, icon: Icon(EvaIcons.searchOutline,color: Colors.white,))
           ],
         ),
-        body: ListView(children: [
-          NowPlaying()
+        body: ListView(children: const [
+         NowPlaying(),
+         Genres(),
+         Persons()
 
         ]),
 

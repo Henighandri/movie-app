@@ -20,14 +20,14 @@ class PersonResponse {
 
   factory PersonResponse.fromMap(Map<String, dynamic> map) {
     return PersonResponse(
-      persons: List<Person>.from(map['persons']?.map((x) => Person.fromMap(x))),
+      persons:map['results']==null?[]: List<Person>.from(map['results']?.map((x) => Person.fromMap(x))),
       error: map['error'] ?? '',
     );
   }
 
   String toJson() => json.encode(toMap());
 
-  factory PersonResponse.fromJson(String source) => PersonResponse.fromMap(json.decode(source));
+  factory PersonResponse.fromJson(dynamic source) => PersonResponse.fromMap(source);
 
 
  

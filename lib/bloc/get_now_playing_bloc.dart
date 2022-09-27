@@ -8,9 +8,7 @@ class NowPlayingMoviesBloc{
 
   getPlayingMovies()async{
     MovieResponse response =await _repository.getPlayingMovies();
-   response.movies.forEach((element) {
-     print(element.toString());
-   });
+   
     _subject.sink.add(response);
   }
 

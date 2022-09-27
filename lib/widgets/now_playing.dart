@@ -6,7 +6,7 @@ import 'package:movie_app/model/movie_response.dart';
 import 'package:page_indicator/page_indicator.dart';
 import '../style/theme.dart' as Style;
 class NowPlaying extends StatefulWidget {
-  NowPlaying({Key? key}) : super(key: key);
+  const NowPlaying({Key? key}) : super(key: key);
 
   @override
   State<NowPlaying> createState() => _NowPlayingState();
@@ -15,6 +15,7 @@ class NowPlaying extends StatefulWidget {
 class _NowPlayingState extends State<NowPlaying> {
   PageController pageController =
       PageController(viewportFraction: 1, keepPage: true);
+
 @override
   void initState() {
     // TODO: implement initState
@@ -32,7 +33,7 @@ class _NowPlayingState extends State<NowPlaying> {
               return _buildErrorWidget(snapshot.data!.error);
 
             }
-            return _buildHomeWidget(snapshot.data!);
+            return _buildPlayingWidget(snapshot.data!);
           }else if(snapshot.hasError){
             return _buildErrorWidget(snapshot.error.toString());
           }else{
@@ -63,13 +64,13 @@ class _NowPlayingState extends State<NowPlaying> {
         child: Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Text("Error occured: $error",style: TextStyle(color: Colors.white,fontSize: 20),),
+        Text("Error occured: $error",style: const TextStyle(color: Colors.white,fontSize: 20),),
       ],
     ));
   }
 
 
-  Widget _buildHomeWidget(MovieResponse data) {
+  Widget _buildPlayingWidget(MovieResponse data) {
     List<Movie> movies = data.movies;
     if (movies.isEmpty) {
       return SizedBox(
@@ -161,7 +162,7 @@ class _NowPlayingState extends State<NowPlaying> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: <Widget>[
                               Text(
-                                movies[index].title,
+                                movies[index].title!,
                                 style: const TextStyle(
                                     height: 1.5,
                                     color: Colors.white,
