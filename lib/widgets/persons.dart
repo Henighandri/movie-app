@@ -59,20 +59,19 @@ class _PersonsState extends State<Persons> {
     
   }
   Widget _buildLoadingWidget(){
-    return Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: const [
-          SizedBox(
-            height: 25,
-            width: 25,
-            child: CircularProgressIndicator(
-               valueColor:  AlwaysStoppedAnimation<Color>(Colors.white),
-            strokeWidth: 4.0,
-            ),
-          )
-
-      ]),
+    return  SizedBox(
+           height: 150,
+           width:  MediaQuery.of(context).size.width,
+      child: const Center(
+        child: SizedBox(
+          height: 25,
+          width: 25,
+          child: CircularProgressIndicator(
+             valueColor:  AlwaysStoppedAnimation<Color>(Colors.white),
+          strokeWidth: 4.0,
+          ),
+        ),
+      ),
     );
   }
    Widget _buildErrorWidget(String error) {
@@ -86,7 +85,7 @@ class _PersonsState extends State<Persons> {
   }
 
   Widget _buildPersonsWidget(PersonResponse data){
-    List<Person> persons=data.persons;
+    List<Person> persons=data.persons!;
    
     if(persons.isEmpty){
     return const Text(
@@ -116,7 +115,7 @@ class _PersonsState extends State<Persons> {
                    //borderRadius: BorderRadius.all(Radius.circular(2)),
                    shape: BoxShape.circle
                   ),
-                  child: Center(child: Icon(EvaIcons.filmOutline,color: Colors.white,size: 50,)),
+                  child: const Center(child: Icon(EvaIcons.filmOutline,color: Colors.white,size: 50,)),
                 )
                 : Container(
                   width: 80,

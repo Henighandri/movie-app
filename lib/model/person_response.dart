@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:movie_app/model/person.dart';
 
 class PersonResponse {
-  final List<Person> persons;
+  final List<Person>? persons;
   final String error;
   PersonResponse({
     required this.persons,
@@ -13,7 +13,7 @@ class PersonResponse {
 
   Map<String, dynamic> toMap() {
     return {
-      'persons': persons.map((x) => x.toMap()).toList(),
+      'persons': persons!.map((x) => x.toMap()).toList(),
       'error': error,
     };
   }
@@ -33,6 +33,6 @@ class PersonResponse {
  
   PersonResponse.withError(
     String errorvalue,
-  )   : persons = [],
+  )   : persons = null,
         error = errorvalue;
 }

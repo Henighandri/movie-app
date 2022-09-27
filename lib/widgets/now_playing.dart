@@ -43,20 +43,19 @@ class _NowPlayingState extends State<NowPlaying> {
 
   }
   Widget _buildLoadingWidget(){
-    return Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: const [
-          SizedBox(
-            height: 25,
-            width: 25,
-            child: CircularProgressIndicator(
-               valueColor:  AlwaysStoppedAnimation<Color>(Colors.white),
-            strokeWidth: 4.0,
-            ),
-          )
-
-      ]),
+    return  SizedBox(
+           height: 220,
+           width:  MediaQuery.of(context).size.width,
+      child: const Center(
+        child: SizedBox(
+          height: 25,
+          width: 25,
+          child: CircularProgressIndicator(
+             valueColor:  AlwaysStoppedAnimation<Color>(Colors.white),
+          strokeWidth: 4.0,
+          ),
+        ),
+      ),
     );
   }
    Widget _buildErrorWidget(String error) {
@@ -71,7 +70,7 @@ class _NowPlayingState extends State<NowPlaying> {
 
 
   Widget _buildPlayingWidget(MovieResponse data) {
-    List<Movie> movies = data.movies;
+    List<Movie> movies = data.movies!;
     if (movies.isEmpty) {
       return SizedBox(
         width: MediaQuery.of(context).size.width,

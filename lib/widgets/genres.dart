@@ -44,20 +44,19 @@ class _GenresState extends State<Genres> {
   }
   
   Widget _buildLoadingWidget(){
-    return Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: const [
-          SizedBox(
-            height: 25,
-            width: 25,
-            child: CircularProgressIndicator(
-               valueColor:  AlwaysStoppedAnimation<Color>(Colors.white),
-            strokeWidth: 4.0,
-            ),
-          )
-
-      ]),
+    return  SizedBox(
+           height: 220,
+           width:  MediaQuery.of(context).size.width,
+      child: const Center(
+        child: SizedBox(
+          height: 25,
+          width: 25,
+          child: CircularProgressIndicator(
+             valueColor:  AlwaysStoppedAnimation<Color>(Colors.white),
+          strokeWidth: 4.0,
+          ),
+        ),
+      ),
     );
   }
    Widget _buildErrorWidget(String error) {
@@ -71,7 +70,7 @@ class _GenresState extends State<Genres> {
   }
 
   Widget _buildGenreWidget(GenreResponse data){
-    List<Genre> genres= data.genres;
+    List<Genre> genres= data.genres!;
    if(genres.isEmpty){
     return const Text(
                 "No More Movies",

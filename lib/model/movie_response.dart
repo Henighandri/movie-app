@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:movie_app/model/movie.dart';
 
 class MovieResponse {
-  final List<Movie> movies;
+  final List<Movie>? movies;
   final String error;
 
   MovieResponse(this.movies, this.error);
@@ -15,7 +15,7 @@ class MovieResponse {
         error = "";
 
   MovieResponse.withError(String errorValue)
-      : movies = [],
+      : movies = null,
         error = errorValue;
 
   @override

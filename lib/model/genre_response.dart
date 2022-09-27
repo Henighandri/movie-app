@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:movie_app/model/genre.dart';
 class GenreResponse {
-  final List<Genre> genres;
+  final List<Genre>? genres;
   final String error;
 
   GenreResponse(this.genres, this.error);
@@ -13,6 +13,6 @@ class GenreResponse {
         error = "";
 
   GenreResponse.withError(String errorValue)
-      : genres = [],
+      : genres = null,
         error = errorValue;
 }
