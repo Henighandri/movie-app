@@ -7,29 +7,40 @@ import 'package:movie_app/bloc/get_movies_byGenre_bloc.dart';
 import 'package:movie_app/model/movie.dart';
 import 'package:movie_app/model/movie_response.dart';
 
-class GenrsMovies extends StatefulWidget {
-  GenrsMovies({
+class MoviesWidget extends StatefulWidget {
+  MoviesWidget({
     Key? key,
-    required this.id,
+     required this.getMovieList, this.stream,
+   
   }) : super(key: key);
-  final int id;
+ 
+  final Function getMovieList;
+  final Stream<MovieResponse?>? stream;
+   
   @override
-  State<GenrsMovies> createState() => _GenrsMoviesState();
+  State<MoviesWidget> createState() => _MoviesWidgetState();
 }
 
-class _GenrsMoviesState extends State<GenrsMovies> {
+class _MoviesWidgetState extends State<MoviesWidget> {
 
  @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    moviesByGenreBloc.getMovieByGenre(widget.id);
+   
+    widget.getMovieList();
+  }
+   @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    //movieVideosBloc.drainStream();
   }
 
   @override
   Widget build(BuildContext context) {
     return StreamBuilder(
-      stream: moviesByGenreBloc.subject.stream,
+      stream: widget.stream,
       builder: (context ,AsyncSnapshot<MovieResponse?> snapshot){
           if(snapshot.hasData){
             if(snapshot.data!.error.isNotEmpty){

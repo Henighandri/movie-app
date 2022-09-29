@@ -21,7 +21,12 @@ class _GenresState extends State<Genres> {
     super.initState();
    genresBloc.getGenres();
   }
-
+ @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    //movieVideosBloc.drainStream();
+  }
 
   @override
   Widget build(BuildContext context) {

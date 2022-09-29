@@ -20,14 +20,14 @@ class CastResponse {
 
   factory CastResponse.fromMap(Map<String, dynamic> map) {
     return CastResponse(
-      casts: map['casts'] != null ? List<Cast>.from(map['casts']?.map((x) => Cast.fromMap(x))) : null,
+      casts: map['cast'] != null ? List<Cast>.from(map['cast']?.map((x) => Cast.fromMap(x))) : null,
       error: map['error'],
     );
   }
 
   String toJson() => json.encode(toMap());
 
-  factory CastResponse.fromJson(String source) => CastResponse.fromMap(json.decode(source));
+  factory CastResponse.fromJson(dynamic source) => CastResponse.fromMap(source);
 
    CastResponse.withError(String errorValue)
       : casts = null,

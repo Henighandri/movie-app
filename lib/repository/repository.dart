@@ -12,14 +12,14 @@ class MovieRepository{
 
   final Dio _dio=Dio();
 
-  var getPopularUrl="$mainUrl/movie/top_rated";
+  var gettopRatedUrl="$mainUrl/movie/top_rated";
   var getMoviesUrl="$mainUrl/discover/movie";
   var getPlayingUrl="$mainUrl/movie/now_playing";
   var getGenresUrl="$mainUrl/genre/movie/list";
   var getPersonsUrl="$mainUrl/trending/person/week";
   var movieUrl ='$mainUrl/movie';
 
-  Future<MovieResponse> getMovies()async{
+  Future<MovieResponse> getTopRatedMovies()async{
     var params={
       "api_key":apiKey,
       "language":"en-US",
@@ -27,7 +27,7 @@ class MovieRepository{
     };
 
     try{
-      Response response=await _dio.get(getPopularUrl,queryParameters: params);
+      Response response=await _dio.get(gettopRatedUrl,queryParameters: params);
       return MovieResponse.fromJson(response.data);
     }catch (error,stacktracer){
        print("exeption occured : $error stacktracer : $stacktracer");
@@ -136,7 +136,7 @@ class MovieRepository{
     };
     try{
       Response response=await _dio.get('$movieUrl/$id/credits',queryParameters: params);
-      //print(response);
+     
       return CastResponse.fromJson(response.data );
       }catch (error,stacktracer){
         print("exeption occured : $error stacktracer : $stacktracer");

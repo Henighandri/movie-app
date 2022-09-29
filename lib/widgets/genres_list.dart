@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:movie_app/bloc/get_movies_byGenre_bloc.dart';
 import 'package:movie_app/model/genre.dart';
-import 'package:movie_app/widgets/genre_movies.dart';
+import 'package:movie_app/widgets/movies_widget.dart';
 import '../style/theme.dart' as Style;
 
 class GenresList extends StatefulWidget {
@@ -56,7 +57,12 @@ class _GenresListState extends State<GenresList>
               child: TabBarView(
           controller: _tabController,
           physics:const NeverScrollableScrollPhysics(),
-          children:widget.genres.map((genre) => GenrsMovies(id:genre.id)).toList() ,
+          children:widget.genres.map((genre) => MoviesWidget(
+            getMovieList: (){
+               moviesByGenreBloc.getMovieByGenre(genre.id);
+            },
+            stream: moviesByGenreBloc.subject.stream,
+            )).toList() ,
         ),
             ),
           

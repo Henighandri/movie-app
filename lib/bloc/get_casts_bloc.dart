@@ -11,6 +11,7 @@ class CastsBloc{
 
   getCasts(int id)async{
     CastResponse response =await _repository.getCasts(id);
+   
     _subject.sink.add(response);
   }
 

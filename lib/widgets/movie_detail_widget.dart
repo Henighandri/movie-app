@@ -1,16 +1,22 @@
 
+import 'dart:ui';
+
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:movie_app/model/movie.dart';
+import 'package:movie_app/model/video.dart';
+import 'package:movie_app/screen/video_player.dart';
+import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 import '../style/theme.dart' as Style;
 
 class MovieDetailWidget extends StatelessWidget {
   const MovieDetailWidget({
-    Key? key, required this.movie,
+    Key? key, required this.movie, required this.videos,
 
   }) : super(key: key);
 final Movie movie;
+final List<Video> videos;
 
   @override
   Widget build(BuildContext context) {
@@ -74,17 +80,29 @@ final Movie movie;
                  Positioned(
                   bottom: 0,
                   right: 30,
-                   child: Container(
-                          width: 60,
-                          height: 60,
-                          decoration:  BoxDecoration(
-                           color:  Style.Colors.secondColor,
-                           //borderRadius: BorderRadius.all(Radius.circular(2)),
-                           border: Border.all(color: Colors.white,width: 2),
-                           shape: BoxShape.circle
+                   child: GestureDetector(
+                    onTap: (){
+                       Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => VideoPlayerScreen(
+              videos: videos,
+            ),
+          ),
+        );
+                    },
+                     child: Container(
+                            width: 60,
+                            height: 60,
+                            decoration:  BoxDecoration(
+                             color:  Style.Colors.secondColor,
+                             //borderRadius: BorderRadius.all(Radius.circular(2)),
+                             border: Border.all(color: Colors.white,width: 2),
+                             shape: BoxShape.circle
+                            ),
+                            child: const Center(child: Icon(Icons.play_arrow,color: Colors.white,size: 30,)),
                           ),
-                          child: const Center(child: Icon(Icons.play_arrow,color: Colors.white,size: 30,)),
-                        ),
+                   ),
                  ),
                  Positioned(
                   top: 60,

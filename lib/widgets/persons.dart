@@ -22,6 +22,13 @@ class _PersonsState extends State<Persons> {
     super.initState();
     personsListBloc.getPersons();
   }
+ @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    //movieVideosBloc.drainStream();
+  }
+
   @override
   Widget build(BuildContext context) {
 

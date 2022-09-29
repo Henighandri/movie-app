@@ -4,8 +4,10 @@ import 'package:movie_app/bloc/get_video_bloc.dart';
 import 'package:movie_app/model/movie.dart';
 import 'package:movie_app/model/video.dart';
 import 'package:movie_app/model/video_response.dart';
+import 'package:movie_app/widgets/casts.dart';
 import 'package:movie_app/widgets/movie_detail_widget.dart';
 import 'package:movie_app/widgets/movie_info.dart';
+import 'package:movie_app/widgets/similar_movies.dart';
 
 
 import '../style/theme.dart' as Style;
@@ -88,12 +90,18 @@ class _DetailScreenState extends State<DetailScreen> {
   Widget _buildVideoWidget(VideoResponse data){
     List<Video> videos=data.videos!;
 
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        MovieDetailWidget(movie: widget.movie,),
-         MovieInfo(id: widget.movie.id)
-      ],
+    return SingleChildScrollView(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+           MovieDetailWidget(movie: widget.movie,videos: videos,),
+           MovieInfo(id: widget.movie.id),
+           CastsWidget(id: widget.movie.id),
+           SimilarMovies(id: widget.movie.id)
+    
+           
+        ],
+      ),
     );
   }
 }

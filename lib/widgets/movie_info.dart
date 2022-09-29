@@ -20,7 +20,12 @@ class _MovieInfoState extends State<MovieInfo> {
     super.initState();
     movieDetailBloc.getMovieDetail(widget.id);
   }
-
+ @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    //movieVideosBloc.drainStream();
+  }
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<MovieDetailResponse?>(

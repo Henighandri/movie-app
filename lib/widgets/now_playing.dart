@@ -22,6 +22,12 @@ class _NowPlayingState extends State<NowPlaying> {
     super.initState();
     nowPlayingMoviesBloc.getPlayingMovies();
   }
+   @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    //movieVideosBloc.drainStream();
+  }
 
   @override
   Widget build(BuildContext context) {
